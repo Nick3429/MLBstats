@@ -28,6 +28,10 @@ tr, td, th {
     color: white; /* White text color */
 }
 
+body {
+  background-color: #282c34;
+}
+
 /* Optional: Style table header cells */
 th {
     background-color: #282c34; /* Dark background for header cells (optional) */
