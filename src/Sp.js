@@ -9,7 +9,7 @@ function Sp() {
 
       const [playerstat, setPlayerstat] = useState({atBats:0}); 
       const [playerName, setPlayerName] = useState({fullName:"Chris Sale"}); 
-      
+      const [teamName, setTeamName] = useState({name:"Boston Red Sox"}); 
 
       function getSPFromApi() {    
         fetch(url)
@@ -17,9 +17,12 @@ function Sp() {
           .then((json) => {  
             /* view the JSON that's returned in the server log */ 
             const people= json.people;
-            const pName = json.people[0].fullName;
+            const tName = json.people[0].stats[0].splits[1].team;
+            console.log(tName)
+            setTeamName(tName)
+            const pName = json.people[0];
             console.log(pName);
-            //console.log(setPlayerName(pName));
+           // console.log(pName);
             setPlayerName(pName);
             const stats= json.people[0].stats;
             setPlayerstat(stats[0].splits[0].stat);
@@ -61,7 +64,7 @@ function Sp() {
       //<tr><td>{player.atBats}</td><td>{player.team}</td><td>{player.GS}</td><td>{player.Wins}</td><td>{player.losses}</td><td>{player.ERA}</td><td>{player.AVG}</td><td>{player.OBP}</td><td>{player.SLG}</td><td>{player.OPS}</td><td>{player.WHIP}</td><td>{player.StrikePerc}</td><td>{player.KperWalk}</td><td>{player.WalkperNine}</td><td>{player.HRperNine}</td><td>{player.KperNine}</td></tr>)
 
 
-      const tableRow = <tr><td>{playerName}</td><td>{playerstat.atBats}</td><td>{playerstat.gamesStarted}</td><td>{playerstat.wins}</td><td>{playerstat.losses}</td><td>{playerstat.era}</td><td>{playerstat.avg}</td><td>{playerstat.obp}</td><td>{playerstat.slg}</td><td>{playerstat.ops}</td><td>{playerstat.whip}</td><td>{playerstat.strikePercentage}</td><td>{playerstat.strikeoutWalkRatio}</td><td>{playerstat.walksPer9Inn}</td><td>{playerstat.homeRunsPer9}</td><td>{playerstat.strikeoutsPer9Inn}</td></tr>
+      const tableRow = <tr><td>{playerName.fullName}</td><td>{teamName.name}</td><td>{playerstat.gamesStarted}</td><td>{playerstat.wins}</td><td>{playerstat.losses}</td><td>{playerstat.era}</td><td>{playerstat.avg}</td><td>{playerstat.obp}</td><td>{playerstat.slg}</td><td>{playerstat.ops}</td><td>{playerstat.whip}</td><td>{playerstat.strikePercentage}</td><td>{playerstat.strikeoutWalkRatio}</td><td>{playerstat.walksPer9Inn}</td><td>{playerstat.homeRunsPer9}</td><td>{playerstat.strikeoutsPer9Inn}</td></tr>
 
   return (
     <div>
