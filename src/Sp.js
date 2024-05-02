@@ -3,8 +3,6 @@ import React, { useEffect,useState } from 'react';
 
 function Sp() {
 
-      
-
       const url= "https://statsapi.mlb.com/api/v1/people/640455?hydrate=stats(group=[pitching],type=[byDateRange],startDate=01/01/2024,endDate=10/01/2024,season=2024)"
 
       const [playerstat, setPlayerstat] = useState({atBats:0}); 
